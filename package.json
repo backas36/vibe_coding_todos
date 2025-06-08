@@ -1,5 +1,6 @@
 {
   "name": "vibe-todos",
+  "homepage": "https://backas36.github.io/vibe_coding_todos",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "install": "^0.13.0",
