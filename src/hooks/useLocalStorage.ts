@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // 用於同步 state 與 localStorage
 function useLocalStorage<T>(key: string, initialValue: T) {
@@ -11,16 +11,15 @@ function useLocalStorage<T>(key: string, initialValue: T) {
     }
   });
 
-  const setValue = (value: T) => {
+  useEffect(() => {
     try {
-      setStoredValue(value);
-      window.localStorage.setItem(key, JSON.stringify(value));
+      window.localStorage.setItem(key, JSON.stringify(storedValue));
     } catch (error) {
       // handle error
     }
-  };
+  }, [key, storedValue]);
 
-  return [storedValue, setValue] as const;
+  return [storedValue, setStoredValue] as const;
 }
 
 export default useLocalStorage;
